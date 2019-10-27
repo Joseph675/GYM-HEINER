@@ -1,0 +1,88 @@
+<div class="page-wrapper"> 
+    <div class="col s12 m8 l9  d-print-none">     
+        
+        <div class="d-print-none">
+         
+            <br>
+        </div>
+
+        <h1>Asistencias Usuarios</h1>
+        
+
+
+        
+
+
+      
+
+		<div>
+                
+
+            <div class="active-cyan-4 mb-4 d-print-none">
+                <input class="form-control" ng-model="searchText" type="text" placeholder="Search" aria-label="Search">
+            </div>
+    
+
+
+
+
+            <select name="select_year" ng-model="dato.select_year">
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+            
+            <select name="select_month" ng-model="dato.select_month">
+                <option value="01">Enero</option>
+                <option value="02">Febrero</option>
+                <option value="03">Marzo</option>
+                <option value="04">Abril</option>
+                <option value="05">Mayo</option>
+                <option value="06">Junio</option>
+                <option value="07">Julio</option>
+                <option value="08">Agosto</option>
+                <option value="09">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+            </select>
+            
+            <button ng-click="traerUsuarios()">buscar</button>
+
+
+
+
+
+
+
+                <br>
+            <table  id="searchTextResults"  class="table table-striped" >
+                    <tr >
+                        <td>Rowid</td>
+                        <td>Usuario nombre</td>
+                        <td>Fecha</td>	
+                    
+                    </tr>
+                    <tr ng-repeat="usu in usuarios" > 
+                        <td>{{usu.rowid}}</td>
+                        <td ng-click="mostrarAsistencias(usu)" style="cursor: pointer;">{{usu.nombres}}</td>
+                        <td>
+                            
+                            <button  ng-click="editarAsistencia(usu, asi)" class="btn btn-outline-dark btn-xs" ng-repeat="asi in usu.asistencias">
+                                {{asi.fecha  | date:'dd/MM/yyyy'}}</button> 
+    
+                            <button ng-click="insertarAsistencia(usu)" class="btn btn-info btn-xs">+</button>
+                        </td>
+    
+    
+                    </tr>
+                    
+                </table>
+    
+            </div>
+    </div>
+</div>

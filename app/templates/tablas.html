@@ -1,0 +1,161 @@
+
+<div>
+<div class="page-wrapper">
+<div class="col s12 m8 l9  d-print-none">
+
+    <h1>Usuarios Activos</h1>
+
+</div>
+
+    <div class="container-fluid">
+    <div  class="row">
+            <div class="col-12">
+                    <div class="card">
+                            <div class="card-body" style="overflow: auto">
+                                <div class="active-cyan-4 mb-4 d-print-none">
+                                    <input class="form-control" ng-model="searchText " type="text" placeholder="Search" aria-label="Search">
+                                </div>
+                             
+                        <div class="d-print-none" >
+                            <div class="custom-control custom-radio">
+                                    <input ng-click="mostrarActi(usuario.activo)" ng-model="usuario.activo" value="1" type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>
+                                    <label class="custom-control-label" for="customControlValidation3">activos</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                    <input  ng-click="mostrarActi(usuario.activo)" ng-model="usuario.activo" value="0" type="radio" class="custom-control-input" id="customControlValidation4" name="radio-stacked" required>
+                                    <label class="custom-control-label" for="customControlValidation4">Inactivos</label>
+                            </div>
+                        </div>
+
+                                <h5 class="card-title m-b-0 d-print-none">Usuarios Insertados</h5>
+                            
+                                <table id="searchObjResults" class="table">
+                                    <thead>
+                                        <tr>
+                                                <th>Rowid</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                                <th>Email</th>
+                                                <th>Sexo</th>
+                                                <th>Fecha de Nacimiento</th>
+                                                <th>Celular</th>
+                                                <th>Username</th>
+                                                <th>Password</th>
+                                                <th>Activo</th>
+                                                <th>Editar</th>
+                                                
+                                
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="usuario in usuarios  | filter:searchText">
+                                                <td >{{usuario.rowid}}</td>
+                                                <td >{{usuario.nombres}}</td>
+                                                <td >{{usuario.apellidos}}</td>
+                                                <td >{{usuario.email}}</td>
+                                                <td >{{usuario.sexo}}</td>
+                                                <td >{{usuario.fecha | date:'dd/MM/yyyy'}}</td>
+                                                <td >{{usuario.celular}}</td>
+                                                <td >{{usuario.username}}</td>
+                                                <td >{{usuario.password}}</td>
+                                
+                                                <td><input ng-click="modificarActivo(usuario)" ng-model="usuario.activo" ng-true-value=1 ng-false-value=0 type="checkbox" class="form-control" id="acti" placeholder="activo Here">	</td>
+                                                
+                                                <td> 
+                                                    <div> 
+                                                      
+                                                        <i ng-click="eliminarusuario(usuario)" class="fas fa-user-times"></i>  
+
+                                                        
+                                                    
+                                                    </div>
+                                                </td>
+                                
+                                            </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="card">
+                <form ng-show="MostrarTablaModificar" class="form-horizontal">
+                                <div class="card-body">
+                                        <h4 class="card-title">Modificar</h4>
+                                        <div class="form-group row">
+                                                        <label for="f_mod_name" class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                                        <div class="col-sm-9">
+                                                                        <input id="f_mod_name" ng-model="usuario_modi.nombres" type="text" class="form-control" placeholder="First Name Here">
+                                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                                        <label for="l_mod_name" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                                                        <div class="col-sm-9">
+                                                                        <input id="l_mod_name" ng-model="usuario_modi.apellidos" type="text" class="form-control" placeholder="Last Name Here">
+                                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                                        <label for="email_mod_1" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                                                        <div class="col-sm-9">
+                                                                        <input id="email_mod_1" ng-model="usuario_modi.email" type="text" class="form-control" placeholder="Email Here">
+                                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                                        <label for="" class="col-sm-3 text-right control-label col-form-label">Sexo</label>
+                                                        <div class="col-md-9">
+                                                                        <div class="custom-control custom-radio">
+                                                                                        <input ng-model="usuario_modi.sexo" name="usu_modi_sexo" value="M" type="radio" class="custom-control-input" id="usu_mod_sexo_m">
+                                                                                        <label class="custom-control-label" for="usu_modi_sexo_m">Masculino</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio">
+                                                                                        <input  ng-model="usuario_modi.sexo" name="usu_modi_sexo" value="F" type="radio" class="custom-control-input" id="usu_mod_sexo_f">
+                                                                                        <label class="custom-control-label" for="usu_modi_sexo_f">Femenino</label>
+                                                                        </div>
+                                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                                        <label for="cono_mod_1" class="col-sm-3 text-right control-label col-form-label">Celular</label>
+                                                        <div class="col-sm-9">
+                                                                        <input id="cono_mod_1" ng-model="usuario_modi.celular" type="text" class="form-control" placeholder="Celular Here">
+                                                        </div>
+                                        </div>
+                        
+                                        <div class="form-group row">
+                                                        <label for="F_mod" class="col-sm-3 text-right control-label col-form-label">Fecha de Nacimiento</label>
+                                                        <div class="col-sm-9">
+                                                                        <input id="F_mod" ng-model="usuario_modi.fecha" type="date" class="form-control" placeholder="Fecha de Nacimiento Here">
+                                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                                        <label for="Uname_mod" class="col-sm-3 text-right control-label col-form-label">Username</label>
+                                                        <div class="col-sm-9">
+                                                                        <input id="Uname_mod" ng-model="usuario_modi.username" type="text" class="form-control" placeholder="Username Here">
+                                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                                        <label for="Pass_mod" class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                                        <div class="col-sm-9">
+                                                                        <input id="Pass_mod" ng-model="usuario_modi.password" type="password" class="form-control" placeholder="Password Here">
+                                                        </div>
+                                        </div>
+
+                                                
+                                                
+                                </div>
+                                <div class="border-top">
+                                                <div class="card-body">
+                                                                <button ng-click="modificarusuario(usuario_modi)" type="button" class="btn btn-primary">Guardar Cambios</button>
+                                                </div>
+                                </div>
+                </form>
+        </div>
+        </div>
+
+
+
+
+</div>
+</div>  

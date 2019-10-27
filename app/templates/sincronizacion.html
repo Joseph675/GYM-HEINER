@@ -1,0 +1,49 @@
+<div>
+    <div class="page-wrapper"> 
+    <div class="col s12 m8 l9  d-print-none">
+        <br>
+            <button ng-click="descargar_datos()" class="btn btn-outline-success" >Descargar datos</button>
+            <button ng-click="subir_datos()" class="btn btn-outline-warning" >Subir datos</button>
+            <button ng-click="eliminar_datos_locales()" class="btn btn-outline-danger" >Eliminar datos</button>
+
+            <div class="active-cyan-4 mb-4">
+                <input class="form-control" ng-model="searchText" type="text" placeholder="Search" aria-label="Search">
+            </div>
+
+            <div> {{cambios_sin_subir}} datos sin subir</div>
+
+
+        <div class="card-body" style="overflow: auto">
+            <table ng-model="usuario"  id="searchTextResults" class="table">
+                <thead>
+                    <tr>
+                            <th>Rowid</th>
+                            <th>Id</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Username</th>
+                            
+                         
+            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="usuario in usuarios  | filter:searchText">
+                            <td>{{usuario.rowid}}</td>
+                            <td>{{usuario.id}}</td>
+                            <td>{{usuario.nombres}}</td>
+                            <td>{{usuario.apellidos}}</td>
+                            <td>{{usuario.username}}</td>
+                            <td> <span ng-show="usuario.modificado" style="color: aqua">Modificado</span>  </td> 
+                            <td> <span ng-show="usuario.eliminado"  style="color: darkgoldenrod">Eliminado</span> </td> 
+                            <td> <span ng-show="!usuario.id"  style="color: green">Nuevo</span>  </td> 
+                            
+                           
+            
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>

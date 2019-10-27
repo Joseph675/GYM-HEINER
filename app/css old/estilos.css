@@ -1,0 +1,51 @@
+
+
+@media only print{
+	.table-bordered {
+		border: 1px solid #000!important;
+	}
+	.table-bordered>thead>tr>th, 
+	.table-bordered>tbody>tr>th, 
+	.table-bordered>tfoot>tr>th, 
+	.table-bordered>thead>tr>td, 
+	.table-bordered>tbody>tr>td, 
+	.table-bordered>tfoot>tr>td{
+		border: 1px solid #000!important;
+	}
+	.informes-pages{
+		color: #000;
+	}
+	table > thead > tr > td{
+		border-bottom-width: 2px!important;
+		border-bottom-color: #f00!important;
+		font-weight: bold;
+		-webkit-print-color-adjust: exact;
+	}
+	table > thead > tr{
+			background-color: #eee!important;
+			background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=)!important;
+			background-image: linear-gradient(to bottom, #f2f2f2 0, #fafafa 100%);
+			-webkit-print-color-adjust: exact;
+	}
+	.table-striped2 > tbody > tr:nth-of-type(odd) {
+			background-color: rgba(153, 203, 238, 0.4)!important;
+	}
+	.table td, .table th {
+			background-color: inherit !important;
+	}
+	.table-bordered2 > thead > tr > th, .table-bordered2 > tbody > tr > th, .table-bordered2 > tfoot > tr > th, .table-bordered2 > thead > tr > td, .table-bordered2 > tbody > tr > td, .table-bordered2 > tfoot > tr > td {
+			border: 1px solid #000!important;
+	}
+	.table th, .table td{
+		padding: 0!important;
+    }
+    .page-wrapper{
+        margin-left: 0%;
+    }
+}
+
+.modal-backdrop{
+	opacity: 0.4;
+}
+
+
