@@ -10,30 +10,10 @@ angular.module('app')
 	$scope.mostrarTabla=false;
 	$scope.mostrarTablaUsuariosInsertados=false;
 	$scope.mostrarTablaUsuariosAsistencia=false;
-
+	$scope.usuario = {
+		sexo: 'M'
+	}
 	
-
-	$(function(){
-		// Success Type
-		$('#ts-success').on('click', function() {
-			toastr.success('Have fun storming the castle!', 'Miracle Max Says');
-		});
-
-		// Success Type
-		$('#ts-info').on('click', function() {
-			toastr.info('We do have the Kapua suite available.', 'Turtle Bay Resort');
-		});
-
-		// Success Type
-		$('#ts-warning').on('click', function() {
-			toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!');
-		});
-
-		// Success Type
-		$('#ts-error').on('click', function() {
-			toastr.error('I do not think that word means what you think it means.', 'Inconceivable!');
-		});
-	});
 
 
 
@@ -121,6 +101,75 @@ $scope.abrirInsertar=function(){
 
 	
 
+
+
+
+
+	
+
+
+$scope.insertarusuarios = function(usu){
+
+
+	$scope.fecha= username.fecha
+	fecha=window.fixDate($scope.fecha);
+
+  var usuario = document.getElementById("username");
+
+	ConexionServ.query('SELECT *, rowid FROM usuarios WHERE username=?', [usu.username]).then(function(result){
+		console.log(result)
+			if(result.length > 0){
+				
+				 
+				return;
+		}else{
+			if  (usuario.value =="" ) {
+			 
+			} else {
+				consulta="INSERT INTO usuarios ('nombres', 'apellidos', 'email','sexo', 'fecha', 'celular','username','password') " +
+				"VALUES(?,?,?,?,?,?,?,?)" 
+				
+			ConexionServ.query(consulta, [usu.nombres, usu.apellidos, usu.email, usu.sexo, fecha, usu.celular, 
+				usu.username, usu.password]).then(function(){
+			
+				 
+				console.log('usuario insertado')
+				$scope.traerUsuarios();
+				$scope.usu = {};
+
+			}, function(){
+				console.log('usuario no insertado')
+				})
+			
+			}
+			
+			}
+	})
+
+	
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	$scope.insertar=function(usu){
 		console.log(usu)
 		$scope.fecha= usu.fecha
@@ -170,7 +219,7 @@ $scope.abrirInsertar=function(){
 					
 				}
 				$scope.usuarios[i].asistencias=asistencias;
-				console.log(asistencias)
+			
 			},function(tx){
 					console.log('noo')
 			})
@@ -178,7 +227,7 @@ $scope.abrirInsertar=function(){
 		
 		}
 		$scope.usuarios=usuarios;
-		console.log($scope.usuarios)
+	
 	})
 
 	}

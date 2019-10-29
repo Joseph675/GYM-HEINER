@@ -3,26 +3,74 @@ angular.module('app')
 .controller('loginCtrl', function($scope, $state, ConexionServ){
 
 
-	$scope.IrAdashboard=function(){
-		$state.go('panel.dashboard');
+	ConexionServ.createTables();
+
+	ConexionServ.query('SELECT *, rowid FROM usuarios WHERE username="admin" and password="123" ').then(function(result){
+		if(result.length == 0){
+			
+			consulta = "INSERT INTO usuarios(nombres, apellidos, email, sexo, celular, activo, username, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
+			ConexionServ.query(consulta, ['Joseth', 'Guerrero', 'davidguerrero777@gmail.com', 'M', 3203602610, 1, 'admin', '123']).then(function(){
+				console.log('Admin creado');
+			});
+		}
+			
+	})
+
+	
+	
+	$scope.hola=function(){
+		console.log("asd")
+			$state.go('panel.dashboard');
 	
 	}
 
-	$scope.irADashboard=function(usu){
+	
+	$scope.IrAdashboard=function(username){
+		console.log("asd")
+			$state.go('panel.dashboard');
+	
+	}
 
-			consulta = 'SELECT *,rowid FROM usuarios WHERE username=? and password=?'
-			ConexionServ.query(consulta, [usu.username, usu.password]).then(function(result){
-				console.log(result)
-				if (result.length>0) {
-					$state.go('panel.dashboard');
-				}else{
-					console.log('no se pudo entrar, datos malos')
-					toastr.error('Datos Invalidos', '¡¡NO PUEDE SER!!');
-				}
 
-			})
-		
+	$scope.mostrarusuarios = function Login(username, password){
+		console.log(password)
+		var usuario=$scope.username; 
+		var password=$scope.password; 
+		if (usuario=="USUARIO1" && password=="CONTRASEÑA1") { 
+		window.location="http://192.168.100.31/feryz_server/public/taxis/"; 
+		} 
+		if (usuario=="USUARIO2" && password=="CONTRASEÑA2") { 
+		window.location="http://192.168.100.31/feryz_server/public/taxis/"; 
+		} 
+		if (usuario=="" && password=="") { 
+		window.location="errorpopup.html"; 
 		}
+		ConexionServ.query('SELECT *, rowid FROM usuarios WHERE username=? and password=?', [username, password]).then(function(result){
+			console.log(result)
+				if(result.length > 0){
+					$state.go("panel.dashboard");
+			}else{
+				}
+		})
+			
+			
+	}
+
+
 	
-	
+	function Login(){ 
+		var done=0; 
+		var usuario=$scope.username; 
+		var password=$scope.password; 
+		if (usuario=="USUARIO1" && password=="CONTRASEÑA1") { 
+		window.location="http://192.168.100.31/feryz_server/public/taxis/"; 
+		} 
+		if (usuario=="USUARIO2" && password=="CONTRASEÑA2") { 
+		window.location="http://192.168.100.31/feryz_server/public/taxis/"; 
+		} 
+		if (usuario=="" && password=="") { 
+		window.location="errorpopup.html"; 
+		} 
+		} 
+
 })
