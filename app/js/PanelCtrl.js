@@ -1,6 +1,50 @@
 angular.module('app')
 
-.controller('PanelCtrl', function($scope, $state){
+.controller('PanelCtrl', function($scope, $state, ConexionServ){
+	ConexionServ.createTables();
+
+
+	$scope.USER = JSON.parse(localStorage.USER);
+
+	$scope.items = [
+		'The first choice!',
+		'And another choice for you.',
+		'but wait! A third!'
+	  ];
+
+	  $scope.mostrarMenu = function(){
+		$scope.aside_toggled = true;
+	  }
+	
+	  $scope.ocultarMenu = function(){
+		$scope.aside_toggled = false;
+	  }
+
+	  // Traemos 
+	
+	  $scope.status = {
+		isopen: false
+	  };
+	
+	  $scope.toggled = function(open) {
+		$log.log('Dropdown is now: ', open);
+	  };
+	
+	  $scope.toggleDropdown = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.status.isopen = !$scope.status.isopen;
+	  };
+	
+	  $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
+
+	 
+
+	$scope.modificando = false ;
+	$scope.mostrar = false ;
+
+
+
 
 
 	$scope.IrADashboard=function(){

@@ -9,7 +9,7 @@ angular.module('app')
 		if(result.length == 0){
 			
 			consulta = "INSERT INTO usuarios(nombres, apellidos, email, sexo, celular, activo, username, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
-			ConexionServ.query(consulta, ['Joseth', 'Guerrero', 'davidguerrero777@gmail.com', 'M', 3203602610, 1, 'admin', '123']).then(function(){
+			ConexionServ.query(consulta, ['Heiner', 'Quintero', 'heinerquintero@gmail.com', 'M', 3144040045, 1, 'admin', '123']).then(function(){
 				console.log('Admin creado');
 			});
 		}
@@ -48,8 +48,11 @@ angular.module('app')
 		ConexionServ.query('SELECT *, rowid FROM usuarios WHERE username=? and password=?', [username, password]).then(function(result){
 			console.log(result)
 				if(result.length > 0){
+					localStorage.USER = JSON.stringify(result[0]);
 					$state.go("panel.dashboard");
+					toastr.info('Bienvenido ' + username)
 			}else{
+				toastr.warning('Usuario incorrecto')
 				}
 		})
 			

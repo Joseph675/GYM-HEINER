@@ -11,7 +11,8 @@ angular.module('app')
 	$scope.mostrarTablaUsuariosInsertados=false;
 	$scope.mostrarTablaUsuariosAsistencia=false;
 	$scope.usuario = {
-		sexo: 'M'
+		sexo: 'M',
+		activo: '1'
 	}
 	
 
@@ -35,7 +36,6 @@ angular.module('app')
 
 	 
 	$scope.mostrarAsistencias = function(usuario){
-		console.log('xhj')
 		$state.go('panel.asisusuarios', { usu_id: usuario.rowid })
 	}
 
@@ -111,7 +111,7 @@ $scope.abrirInsertar=function(){
 $scope.insertarusuarios = function(usu){
 
 
-	$scope.fecha= username.fecha
+	$scope.fecha= usu.fecha
 	fecha=window.fixDate($scope.fecha);
 
   var usuario = document.getElementById("username");
@@ -119,7 +119,7 @@ $scope.insertarusuarios = function(usu){
 	ConexionServ.query('SELECT *, rowid FROM usuarios WHERE username=?', [usu.username]).then(function(result){
 		console.log(result)
 			if(result.length > 0){
-				
+				console.log("usuario existente")
 				 
 				return;
 		}else{
@@ -169,33 +169,6 @@ $scope.insertarusuarios = function(usu){
 
 
 
-
-	$scope.insertar=function(usu){
-		console.log(usu)
-		$scope.fecha= usu.fecha
-		console.log($scope.fecha)
-		fecha=window.fixDate($scope.fecha);
-		console.log(fecha)
-		
-				consulta="INSERT INTO usuarios ('nombres', 'apellidos', 'email','sexo', 'fecha', 'celular','username','password') " +
-					"VALUES(?,?,?,?,?,?,?,?)" 
-					
-				ConexionServ.query(consulta, [usu.nombres, usu.apellidos, usu.email, usu.sexo, fecha, usu.celular, 
-					usu.username, usu.password]).then(function(){
-				
-						toastr.success('Usuario insertado con exito!', 'Administrador');
-					console.log('usuario insertado')
-					$scope.traerUsuarios();
-					$scope.usu = {};
-
-				}, function(){
-					console.log('usuario no insertado')
-					})
-
-					
-
-			}
-		
 
 
 

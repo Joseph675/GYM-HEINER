@@ -15,18 +15,24 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+
+         
+            <nav class="navbar top-navbar ">
                 <div class="navbar-header" data-logobg="skin5">
+                        <div class="navbar-header" data-logobg="skin5">
+                                <!-- This is for the sidebar toggle which is visible on mobile only -->
+                                <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                     <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                  
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
+                            <i class="wi wi-sunset"></i>
                             <img src="./assets/images/logo-icon.png" alt="homepage" class="light-logo" />
                            
                         </b>
@@ -52,7 +58,7 @@
                     <!-- ============================================================== -->
                     <!-- Toggle which is visible on mobile only -->
                     <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                 
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -62,31 +68,7 @@
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <!--aqui es el boton-->
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a ui-sref="panel.usuaios" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <span class="d-none d-md-block">Crear Nuevo<i class="fa fa-angle-down"></i></span>
-                             <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a ui-sref="panel.usuarios" class="dropdown-item" href="#">Usuario</a>
-                                <a ui-sref="panel.asistencias" class="dropdown-item" href="#">Asistencia</a>
-                
-                              
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                            </form>
-                        </li>
+   
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -110,17 +92,10 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-
-                               
-                            
-                                <a class="dropdown-item" ui-sref="login" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                              
-                               
-                            </div>
-                        </li>
+                  
+    
+                        
+                   
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -135,16 +110,47 @@
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar d-print-none" data-sidebarbg="skin5">
+
+                <div class="navigation-trigger d-xl-none" ng-click="mostrarMenu()"  ng-class="{'toggled': aside_toggled}" data-sa-action="aside-open" data-sa-target=".sidebar">
+                        <i class="fa fa-ellipsis-h-alt"></i>
+                </div>
+        
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
+
+
+
+                        <div class="user">
+                            <div  class="user__info" ng-click="ocultarMenu()" data-toggle="dropdown">
+                                <img  alt="user" width="50" class="rounded-circle" ng-show="USER.sexo == 'F'" src=".\assets\images/4.jpg" alt="">
+                                <img alt="user" width="50" class="rounded-circle" ng-show="USER.sexo == 'M'" width="50px" src=".\assets\images/2.jpg" alt="">
+                               
+                                <div class="comment-text active w-100">
+                                        <div class="user__name">{{::USER.nombres}} {{::USER.apellidos}}</div>
+                                        <div class="user__email">{{::USER.email}}</div>
+                               
+                                </div>
+                            </div>
+                                <div class="dropdown-menu dropdown-menu--invert shows">
+                                        <a ui-sref="perfil" class="dropdown-item">Ver Perfil</a>
+                                        <a class="dropdown-item" >Settings</a>
+                                        <a ui-sref="login" class="dropdown-item" >Salir</a>
+                                </div>
+                
+                        </div>
+
+                 
+                
+
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" ui-sref="panel.dashboard" aria-expanded="false"><i class="fas fa-clipboard-list"></i><span class="hide-menu">Dashboard</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" ui-sref="panel.usuarios" aria-expanded="false"><i class="fas fa-address-card"></i><span class="hide-menu">Insertar Usuarios</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" ui-sref="panel.insertados" aria-expanded="false"><i class="fas fa-address-book"></i><span class="hide-menu">Usuarios</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" ui-sref="panel.asistencias" aria-expanded="false"><i class="fas fa-calendar-alt"></i><span class="hide-menu">Asistencias</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" ui-sref="panel.sincronizacion" aria-expanded="false"><i class="fas fa-arrow-circle-up"></i><span class="hide-menu">Sincronizacion</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" ui-sref="login" aria-expanded="false"><i class="fa fa-sign-out-alt"></i><span class="hide-menu">Salir</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
