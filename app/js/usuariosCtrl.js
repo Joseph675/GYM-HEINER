@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('usuariosCtrl', function($scope, ConexionServ, $state, $filter, $uibModal){
+.controller('usuariosCtrl', function($scope, ConexionServ, $state, toastr, $uibModal){
 
 	ConexionServ.createTables();
 
@@ -101,7 +101,18 @@ $scope.abrirInsertar=function(){
 
 	
 
-
+	$scope.mostrarPassw=function(){
+		console.log('siu')
+		$scope.ver=false;
+		$scope.ocultar=true;
+		var tipo =document.getElementById("password");
+		if (tipo.type == "password") {
+			tipo.type = "text";
+			
+		}else{
+			tipo.type="password"
+		}
+}
 
 
 
@@ -131,11 +142,11 @@ $scope.insertarusuarios = function(usu){
 				
 			ConexionServ.query(consulta, [usu.nombres, usu.apellidos, usu.email, usu.sexo, fecha, usu.celular, 
 				usu.username, usu.password]).then(function(){
+					toastr.success('Usuario Insertado!', 'Admin dice');
+					console.log('usuario insertado')
+					$scope.traerUsuarios();
+					$scope.usu = {};
 			
-				 
-				console.log('usuario insertado')
-				$scope.traerUsuarios();
-				$scope.usu = {};
 
 			}, function(){
 				console.log('usuario no insertado')

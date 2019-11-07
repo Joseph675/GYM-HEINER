@@ -1,11 +1,12 @@
 angular.module('app')
 
-.controller('PanelCtrl', function($scope, $state, ConexionServ){
+.controller('PanelCtrl', function($scope, $state, ConexionServ, toastr){
 	ConexionServ.createTables();
+	toastr.success('Have fun storming the castle!', 'Miracle Max Says');
 
 
 	$scope.USER = JSON.parse(localStorage.USER);
-
+	
 	$scope.items = [
 		'The first choice!',
 		'And another choice for you.',
