@@ -95,6 +95,7 @@ $scope.abrirInsertar=function(){
 		$scope.MostrarTablaModificar=true;
 		$scope.usuario_modificar=usuario;
 		console.log('vamos a editar')
+		toastr.info('Vamos a Editar')
 
 	}
 
@@ -131,6 +132,7 @@ $scope.insertarusuarios = function(usu){
 		console.log(result)
 			if(result.length > 0){
 				console.log("usuario existente")
+				toastr.warning('Usuario Ya Existe')
 				 
 				return;
 		}else{
@@ -231,10 +233,12 @@ $scope.insertarusuarios = function(usu){
 			usuario_cambiar.username, usuario_cambiar.password, usuario_cambiar.rowid]).then(function(result){
 			
 			console.log('usuario modificado', result)
+			toastr.success('Usuario Modificado')
 			$scope.MostrarTablaModificar=false;
 			$scope.mostrarTablaInsertar=true;
 		}, function(tx){
 			console.log('usuario no modificado', tx)
+			toastr.warning('Usuario no Modificado')
 		})
 	}
 
@@ -244,10 +248,12 @@ $scope.insertarusuarios = function(usu){
 			ConexionServ.query(consulta, [usuario.rowid]).then(function(result){
 			
 			console.log('usuario eliminado', result)
+			toastr.warning('Usuario Eliminado Correctamente')
 				$scope.usuario = result;
 				$scope.traerUsuarios();
 			}, function(tx){
 			console.log('usuario no eliminado', tx)
+			toastr.info('Usuario no se ha podido Eliminar')
 		})
 	}
 
@@ -272,10 +278,11 @@ $scope.insertarusuarios = function(usu){
 		ConexionServ.query(consulta, [fecha, usu.rowid]).then(function(){
 			$scope.traerUsuarios();
 			console.log('asistencia insertado')
-
+			toastr.success('Asistencia Insertada Correctamente')
 			
 		}, function(){
 			console.log('asistencia no insertado')
+			toastr.warning('Usuario no Insertada')
 		})
 
 			
@@ -318,8 +325,10 @@ $scope.insertarusuarios = function(usu){
 		ConexionServ.query(consulta, [usuario.activo, usuario.rowid]).then(function(result){
 			$scope.traerUsuarios();
 			console.log('activo modificado', result)
+			toastr.success('Usuario Modificado')
 		}, function(tx){
 			console.log('activo no modificado', tx)
+			toastr.warning('Usuario no Modificado')
 			
 		})
 	
@@ -350,7 +359,7 @@ $scope.insertarusuarios = function(usu){
 
 
 
-.controller('EditarAsistenciaCtrl', function ($scope, ConexionServ, $uibModalInstance, asis) {
+.controller('EditarAsistenciaCtrl', function ($scope, ConexionServ, $uibModalInstance, asis, toastr){
 	
 
 	$scope.mostrardatepicker=false;
@@ -364,9 +373,10 @@ $scope.insertarusuarios = function(usu){
 			ConexionServ.query(consulta, [usu.rowid]).then(function(result){
 			console.log('asistencia eliminado', result)
 			$scope.usu = result;
-			
+			toastr.warning('Asistencia eliminada correctamente')
 			}, function(tx){
 			console.log('asistencia no eliminado', tx)
+			toastr.info('Asistencia no se ha podido eliminar')
 		})
 		$uibModalInstance.close('eliminado');
 	}
@@ -401,8 +411,10 @@ $scope.insertarusuarios = function(usu){
 		ConexionServ.query(consulta, [fecha, asis.rowid]).then(function(result){
 			
 			console.log('asistencia modificado', result)
+			toastr.success('Asistencia Modificada')
 		}, function(tx){
 			console.log('asistencia no modificado', tx)
+			toastr.info('Asistencia no Modificado')
 		})
 		$uibModalInstance.close();
 		};

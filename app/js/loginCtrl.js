@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('loginCtrl', function($scope, $state, ConexionServ){
+.controller('loginCtrl', function($scope, $state, ConexionServ, toastr){
 
 
 	ConexionServ.createTables();
@@ -45,7 +45,7 @@ angular.module('app')
 		if (usuario=="" && password=="") { 
 		window.location="errorpopup.html"; 
 		}
-		ConexionServ.query('SELECT *, rowid FROM usuarios WHERE username=? and password=?', [username, password]).then(function(result){
+		ConexionServ.query('SELECT *, rowid FROM usuarios WHERE username=? and password=? and eliminado==0 and activo==1', [username, password]).then(function(result){
 			console.log(result)
 				if(result.length > 0){
 					localStorage.USER = JSON.stringify(result[0]);

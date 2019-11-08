@@ -13,7 +13,7 @@
     <title>OLIMPO GYM</title>
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
-    <link href="assets/toastr.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="assets/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
 
@@ -32,9 +32,15 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+<style>
+#main-wrapper[data-sidebartype=mini-sidebar] .left-sidebar {
+    left: -250px;
+}
+</style>
 </head>
 
-<body>
+<body ng-controller="PrincipalCtrl">
  
 
 
@@ -45,7 +51,7 @@
     <script src="assets/popper.min.js"></script>
     <script src="assets/perfect-scrollbar.jquery.min.js"></script>
     <script src="assets/excanvas.js"></script>
-    <script src="js/waves.js"></script>
+    <script src="assets/waves.js"></script>
  
 
 

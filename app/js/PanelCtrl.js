@@ -1,8 +1,13 @@
 angular.module('app')
 
-.controller('PanelCtrl', function($scope, $state, ConexionServ, toastr){
+.controller('PrincipalCtrl', function($scope){
+
+	$scope.aside_toggled = false;
+
+})
+
+.controller('PanelCtrl', function($scope, $state, ConexionServ){
 	ConexionServ.createTables();
-	toastr.success('Have fun storming the castle!', 'Miracle Max Says');
 
 
 	$scope.USER = JSON.parse(localStorage.USER);
@@ -52,6 +57,12 @@ angular.module('app')
 		$state.go('panel.dashboard');
 	
 	}
+
+
+
+
+
+
 
 	
 });

@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller('AsisusuariosCtrl', function ($scope, ConexionServ, $state, $uibModal) {
+.controller('AsisusuariosCtrl', function ($scope, ConexionServ, $state, $uibModal, toastr) {
 
 
 
@@ -142,10 +142,11 @@ console.log(m)
             ConexionServ.query(consulta, [fecha, usu.rowid]).then(function(){
                 $scope.traerUsuarios();
                 console.log('asistencia insertado')
-    
+                toastr.success('Asistencia insertado')
                 
             }, function(){
                 console.log('asistencia no insertado')
+                toastr.warning('Asistencia no insertado')
             })
     
                 
